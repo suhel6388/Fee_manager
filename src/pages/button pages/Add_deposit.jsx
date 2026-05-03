@@ -3,6 +3,7 @@ import { FaWallet, FaCalendarAlt, FaPlus } from "react-icons/fa";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Barchart from "../../charts/Barchart";
+import Piechart from "../../charts/Piechart";
 
 
 
@@ -12,13 +13,14 @@ const AddDeposit = () => {
 const navigate = useNavigate()
   const today = new Date().toISOString().split("T")[0]
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100 h-screen overflow-scroll">
     
       
       {/* Header */}
       <div className="flex justify-between items-center mb-6 ">
         <h1 className="text-xl font-semibold flex justify-center items-center gap-4"><IoArrowBackCircle color="orange" size={40} onClick={()=>navigate('/')} cursor={'pointer'} /> Monthly Deposit</h1>
         <p className="text-xl text-gray-500">Home / <span className="text-orange-500 text-xl ">Monthly Deposit</span></p>
+        
       </div>
 
       {/* Top Cards */}
@@ -58,8 +60,8 @@ const navigate = useNavigate()
       <div className="grid grid-cols-3 gap-6 mt-6">
         
         {/* Left Section */}
-        <div className="col-span-2 bg-white p-4 rounded-xl shadow h-screen">
-          
+        <div className="col-span-2 bg-white p-4 rounded-xl shadow h-screen ">
+         
           {/* Table Header */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-semibold">Monthly Deposit Records</h2>
@@ -67,7 +69,7 @@ const navigate = useNavigate()
               <option>This Month</option>
             </select>
           </div>
-
+       
           {/* Table */}
           <table className="w-full text-sm">
             <thead className="text-gray-500">
@@ -105,16 +107,27 @@ const navigate = useNavigate()
               </tr>
             </tbody>
           </table>
-
+      
+       
           {/* Chart Placeholder */}
           <div className="mt-6 grid grid-cols-1 grid-rows-2 relative">
             <h3 className="font-semibold ">Monthly Deposit Overview</h3>
-            <div className="h-40 bg-gray-100  rounded absolute top-5 mt-5 ml-10 ">
-             <Barchart/>
-            </div>
-          </div>
 
+
+            <div className="h-40   rounded absolute top-5 mt-5 ml-10 ">
+             <Barchart/>
+
+         
+          </div>
+         
+
+            </div>
+
+                <div className="w-[400px] h-[400px]   rounded absolute top-5 mt-5 ml-10 ">
+              <Piechart/>
+             </div>
         </div>
+      
 
         {/* Right Section Form */}
         <div className="bg-white p-4 rounded-xl shadow">

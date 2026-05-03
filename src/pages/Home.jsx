@@ -16,6 +16,8 @@ import { SiDepositphotos } from "react-icons/si";
 import { PiHandDepositBold} from "react-icons/pi";
 import { IoArrowBackCircle } from "react-icons/io5";
 import {useNavigate } from "react-router-dom";
+import ChartHome from "../charts/Home Chart/Chart_home";
+import Piechart from "../charts/Piechart";
 const Home = () => {
    
     const [open, setOpen] = useState(0);
@@ -33,11 +35,11 @@ const Home = () => {
 
     return (
         <div >
-        <div  className= {`w-full h-screen grid ${open === 1 && 2 ?'bg-white/0 backdrop-blur-3xl' :'bg-none' }  gap-4 text-xl grid-rows-2 grid-cols-1 place-content-center place-items-center  text-yellow-200 relative `}    >
+        <div  className= {`w-full h-screen grid ${open === 1 && 2 ?'bg-white/0 backdrop-blur-3xl' :'bg-none' }  gap-4 text-xl grid-rows-2 grid-cols-1 place-content-center place-items-center  text-black font-semibold relative overflow-scroll `}    >
         {/* Header */}
-              <div className="flex justify-between items-center mb-6 ">
-                <h1 className="text-xl font-semibold flex justify-center items-center gap-4"><IoArrowBackCircle color="orange" size={40} onClick={()=>navigate('/')} cursor={'pointer'} /> Monthly Deposit</h1>
-                <p className="text-xl text-gray-500">Home / <span className="text-orange-500 text-xl ">Monthly Deposit</span></p>
+              <div className="flex justify-between items-center absolute top-2 left-2 ">
+            
+                <p className="text-xl text-gray-500">Home / <span className="text-emerald-500 text-xl ">Dashboard</span></p>
               </div>
        <div className="grid grid-cols-3 grid-rows-2 gap-6">
          <Carddashboard title={'Monthly Deposit '}  amount_value={'₹ 8,000'} icon={<SiDepositphotos  />} onClick={()=>navigate("/Deposit")}    />
@@ -46,30 +48,22 @@ const Home = () => {
                 <Carddashboard title={'Admision Monthly '}  amount_value={' 5,000'} icon={<PiStudentDuotone  />} />
               
                   <Carddashboard title={'Admision Yearly '}  amount_value={' 5,000'} icon={<PiStudentDuotone  />} />
+
                     <Carddashboard title={'Total Centre '}  amount_value={' 2'} icon={<BiSolidInstitution  />} />
        </div>
-           <div data-aos="fade-up"
-     data-aos-easing="linear"
-     data-aos-duration="500" className="btns  grid gap-4 grid-cols-2 grid-rows-1">
-            <Button logo={<FaMoneyBillTrendUp size={25}/>}    label={ 'Add Fees'} border='border-gray-600' border_size={'border-2'} onClick={() => setOpen(open+1)} />
-             <Button logo={< PiStudent color='white' size={25} />} onClick={()=> setOpen(open+2)}  label={'Add Student'}/>
-            <Button logo={<BiEditAlt size={25}/>} label={'Alter'} bg={'bg-transparent'} border='border-red-600' border_size={'border-2'} />
-            
-         <Button logo={<BiAnalyse/> } label={'Analysis'} />
-
-         {open === 1 && <FeesAdd close={()=> setOpen(0)} />}
-          {open === 2 && <Addstudent close={()=> setOpen(0)} />}
-           </div>
+          
       
            <div className="chart-section">
 
             <div className="this-week flex  flex-col justify-center items-center text-2xl relative">
-                <h1>Weekly report</h1>
+                <ChartHome/>
            
+
+         
               
 
             </div>
-
+            
            </div>
         </div>
 
