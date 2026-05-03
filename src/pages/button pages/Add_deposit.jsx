@@ -60,7 +60,7 @@ const navigate = useNavigate()
       <div className="grid grid-cols-3 gap-6 mt-6">
         
         {/* Left Section */}
-        <div className="col-span-2 bg-white p-4 rounded-xl shadow h-screen ">
+        <div className="col-span-2 bg-white p-4 rounded-xl shadow h-[150vh]  ">
          
           {/* Table Header */}
           <div className="flex justify-between items-center mb-4">
@@ -113,19 +113,21 @@ const navigate = useNavigate()
           <div className="mt-6 grid grid-cols-1 grid-rows-2 relative">
             <h3 className="font-semibold ">Monthly Deposit Overview</h3>
 
-
-            <div className="h-40   rounded absolute top-5 mt-5 ml-10 ">
+{/* bar chart */}
+            <div className="h-40  w-40 absolute top-5 mt-5 ml-10 ">
              <Barchart/>
 
          
           </div>
-         
+
+{/* pie chart */}
+           <div className=" h-40 w-40   rounded  mt-28 ml-10 absolute  left-28 top-32 ">
+              <Piechart/>
+             </div>
 
             </div>
 
-                <div className="w-[400px] h-[400px]   rounded absolute top-5 mt-5 ml-10 ">
-              <Piechart/>
-             </div>
+              
         </div>
       
 

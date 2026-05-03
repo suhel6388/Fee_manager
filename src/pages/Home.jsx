@@ -53,12 +53,13 @@ const Home = () => {
        </div>
           
       
-           <div className="chart-section">
+           <div className="chart-section mt-10">
 
-            <div className="this-week flex  flex-col justify-center items-center text-2xl relative">
-                <ChartHome/>
+            <div className="this-week flex   justify-center items-center text-2xl relative gap-4">
+                <Barchart width={600} height={200}/>
            
 
+                 <Piechart/>
          
               
 
