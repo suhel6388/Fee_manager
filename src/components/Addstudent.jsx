@@ -28,7 +28,7 @@ const{
 } = useForm();
 
 
-   const course_fee  = watch("course_fee")
+  const course_fee  = watch("course_fee")
   const deppsit_fee  = watch("deposit_fee")
   const due = course_fee - deppsit_fee;
 
@@ -78,7 +78,7 @@ else{
 
     return (
        <div data-aos = 'zoom-in'  className="min-h-screen fixed inset-0 z-50 flex items-center justify-center 
-       pt-56
+       
          backdrop-blur-3xl overflow-y-scroll ">
           <div p className='absolute bottom-20% left-2'> <Toaster position="bottom-left"  /></div>
 
@@ -89,7 +89,8 @@ else{
          className=" min-h-screen w-1/2  grid grid-rows-1 grid-cols-1 items-center justify-items-center
          bg-clip-padding backdrop-filter   bg-opacity-10 backdrop-saturate-100 backdrop-contrast-100 py-10
           rounded-sm backdrop-blur-lg bg-white/10 border 
-          gap-10 pt-36
+          gap-10 pt-36 mt-80
+          relative
         
          ">
            <h1 className='text-4xl font-semibold bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-teal-500 via-purple-500 to-red-500 text-transparent bg-clip-text h-fit'>Registtration Form</h1>
@@ -103,16 +104,10 @@ onSubmit={handleSubmit(onSubmit, onError)}
           
 
 
-
-          
-          
-          
          
-      className="  shadow-xl  p-6 w-full grid grid-cols-2 gap-5 text-white ">
- <GrClose cursor={'pointer'} onClick={(e) => {
-    e.preventDefault();   // 🔥 IMPORTANT
-    close();}}
-  className='absolute top-2 right-2'/>
+      className="  shadow-xl  p-6 w-full grid grid-cols-2 gap-5 text-white  ">
+ <GrClose cursor={'pointer'} onClick={close} size={20}
+  className='absolute top-20 right-8'/>
         {/* Student Name */}
         <div className="flex flex-col">
           <label className="text-xl mb-1 text-gray-200">Student Name</label>
@@ -158,7 +153,7 @@ onSubmit={handleSubmit(onSubmit, onError)}
           
 
 
-<div className='flex gap-0  '>
+<div className='flex gap-0 justify-center   '>
       {["Male", "Female", "Other"].map((item) => (
         <label key={item} className="flex items-center gap-1 justify-center text-gray-400 px-2 rounded-md outline-none bg-transparent ">
           <input
@@ -206,18 +201,14 @@ onSubmit={handleSubmit(onSubmit, onError)}
         <div className="flex flex-col">
           <label className="text-xl mb-1 text-gray-200">Admision Fee</label>
           <input
+          name='add_fee'
      
              {...register("add_fee", {required:"Addmision fees is require"})}
                    
-  onChange={(e) => {
-    const val = e.target.value.replace(/[^0-9]/g, "");
-    setAmount(val);
-    setValue("add_fee", val);
 
-  }}
-           type="text" className="glass-input text-gray-400 px-5 py-1 rounded-md outline-none bg-transparent border-2" />
-             {errors.course && (
-        <p className="text-red-500">{errors.course.message}</p>
+           type="number" className="glass-input text-gray-400 px-5 py-1 rounded-md outline-none bg-transparent border-2" />
+             {errors.add_fee && (
+        <p className="text-red-500">{errors.add_fee.message}</p>
       )}
 
         </div>
@@ -241,17 +232,24 @@ onSubmit={handleSubmit(onSubmit, onError)}
         <div className="flex flex-col">
           <label className="text-xl mb-1 text-gray-200">Course Fee</label>
           <input 
+      
           
            {...register("course_fee", {required:"Course fee is require"})}
           type="number" className="glass-input text-gray-400 px-5 py-1 rounded-md outline-none bg-transparent border-2" />
+          {errors.course_fee && (
+           <p className="text-red-500">{errors.course_fee.message}</p>
+          )}
         </div>
           {/*deposit Amount*/}
         <div className="flex flex-col">
           <label className="text-xl mb-1 text-gray-200">Deposit Fee Amount</label>
           <input 
-          
-           {...register("deposit_fee", {required:"Deposit fee is require"})}
+         
+           {...register("deposit_fee", {required:"Deposit fee is require (add 0 atleast)"})}
           type="number" className="glass-input text-gray-400 px-5 py-1 rounded-md outline-none bg-transparent border-2" />
+          {errors.deposit_fee && (
+          <p className="text-red-500">{errors.deposit_fee.message}</p>
+          )}
         </div>
 
 
@@ -265,7 +263,9 @@ onSubmit={handleSubmit(onSubmit, onError)}
            {...register("due_fee", {required:"Due fee is require"})}
            value={due}
           type="number" className="glass-input text-gray-400 px-5 py-1 rounded-md outline-none bg-transparent border-2" />
-          
+            {errors.due_fee && (
+          <p className="text-red-500">{errors.due_fee.message}</p>
+          )}
         </div>
 
          {/* mob Fee */}
@@ -289,18 +289,28 @@ onSubmit={handleSubmit(onSubmit, onError)}
         <p className="text-red-500">{errors.address.message}</p>
       )}
         </div>
-
+<div className="btn flex justify-center items-center w-full h-15 gap-10 absolute bottom-2 font-medium">
+        {/* back button */}
+         <button
+        type='submit'
+        onClick={close}
+     
         
+        className="flex justify-center items-center col-span-2 mt-3 bg-white text-black  hover:bg-gray-100 active:bg-emerald-300 transition py-2 rounded backdrop-blur-md relative w-32 h-10">
+          
+         Back  
+        </button>
 
         {/* Submit Button */}
         <button
         type='submit'
         disabled={loading === true}
         
-        className="flex justify-center items-center col-span-2 mt-3 bg-blue-500/70 hover:bg-blue-600/80 transition py-2 rounded-xl backdrop-blur-md relative">
+        className="flex justify-center items-center col-span-2 mt-3 bg-blue-500/70 hover:bg-blue-600/80 transition py-2 rounded backdrop-blur-md relative w-32 h-10">
           
           Submit  <span className='flex justify-center items-center ' > {loading === true && <Loader/>}</span>
         </button>
+        </div>
           
 
       </form>

@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { Tooltip, PieChart, Pie, Cell, Sector } from 'recharts';
 
 const COLORS = [
-  "#FF8C00", "#FFA500", "#FFB732", "#FFC84A",
-  "#FFD966", "#FFAA1A", "#FF9500",
+  "#3B82F6", // Blue
+  "#EF4444", // Red
+  "#FACC15", // Yellow
+  "#10B981", // Green
+  "#8B5CF6", // Purple
+  "#F97316", // Orange
+  "#06B6D4", // Cyan
 ];
-
 const data = [
   { st_name: 'Suhel', amount: 500 },
   { st_name: 'Mizan Khan', amount: 1000 },
@@ -15,6 +19,26 @@ const data = [
   { st_name: 'Zaid', amount: 1500 },
   { st_name: 'Imran', amount: 950 },
 ];
+
+
+const CustomTooltipBar = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        background: "#1a1a2e",
+        border: "1px solid #FFA500",
+        borderRadius: 8,
+        padding: "8px 14px",
+        fontSize: 13,
+        color: "#fff",
+      }}>
+        <p style={{ margin: 0, fontWeight: 600, color: "#FFA500" }}>{label}</p>
+        <p style={{ margin: "4px 0 0", color: "#fff" }}>Deposit: <strong>{payload[0].value.toLocaleString()}</strong></p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const Piechart = ({
   width = 400,

@@ -11,12 +11,14 @@ import Report from '../pages/Report'
 import Setting from '../pages/Setting'
 import Profile from '../pages/Profile'
 import { LuLogOut } from 'react-icons/lu';
+import { PiStudentBold } from "react-icons/pi";
+
 
 
 
 const Sidebar = () => {
     const navigate = useNavigate()
-    const [navopen, setNavopen] = useState(false);
+    const [navopen, setNavopen] = useState(true);
     const [active, setActive] = useState("home");
   
     return (
@@ -30,7 +32,14 @@ const Sidebar = () => {
         background: "#343434",
       }}
          >
-        < FiSidebar 
+       
+        <div className='w-full h-22 flex justify-center item-center cursor-pointer' onClick={()=>{
+           
+            setNavopen(!navopen)
+           
+           
+
+        }}  > < FiSidebar size={20}
         onClick={()=>{
            
             setNavopen(!navopen)
@@ -38,9 +47,15 @@ const Sidebar = () => {
            
 
         }}
-        />
+        /></div>
             
             <ul className={`flex flex-col gap-10 text-xl justify-center items-center  font-semibold`}>
+
+
+                
+
+
+
 
         
                 <li 
@@ -55,6 +70,18 @@ const Sidebar = () => {
                  ${active === "home" ? "bg-[#303030]" : "bg-none"}
                  `}> 
                 <MdHomeFilled/> {!navopen && <span>Home</span>} </li>
+                
+                   <li 
+                 onClick={()=>{
+                     navigate('/Corner')
+                    setActive('corner')
+                }}
+                className={`flex gap-2 justify-center items-center cursor-pointer
+                 active:bg-[#303030]  hover:bg-[#303030] px-5 py-2 rounded 
+                 ${navopen == true ? "p-2 w-fit "  : "px-5 py-2 gap-2" }
+                 ${active === "corner" ? "bg-[#303030]" : "bg-none"}
+                 `}
+                ><PiStudentBold/> {!navopen && <span>Student Corner</span>} </li>
 
 
                 <li 
@@ -71,8 +98,7 @@ const Sidebar = () => {
 
                 <MdEdit/>{!navopen && <span>Alter</span>} </li>
 
-
-                <li 
+                  <li 
                  onClick={()=>{
                      navigate('/report')
                     setActive('report')
@@ -83,6 +109,10 @@ const Sidebar = () => {
                  ${active === "report" ? "bg-[#303030]" : "bg-none"}
                  `}
                 ><TbReportSearch/> {!navopen && <span>Report</span>} </li>
+
+
+              
+
                 <li  onClick={()=>{
                      navigate('/setting')
                     setActive('setting')
